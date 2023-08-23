@@ -1,6 +1,12 @@
 #include <stdio.h>
-
-int main(){
-    printf("hello world");
+int main()
+{
+ 
+    char str[20];
+    // taking input string
+    scanf("%s", str);
+    // printing the read string
+    printf("%s", str);
+   
     return 0;
 }
