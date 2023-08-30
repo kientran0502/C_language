@@ -161,7 +161,11 @@ int main()
 }
 ```
 
-*Cách 2*
+*Cách 2*: sử dụng scanset
+- Phần trong ngoặc vuôn sẽ được xử lí.
+>- Ví dụ: [A-Z] thì nó in ra chỉ các chữ hoa liên tiếp đầu tiên
+> - [^\n] thì nó in ra các kí tự cho điến khi xuất hiện dấu xuống dòng `\n`
+
 
 ```C
 // C Program to take string separated by whitespace using
@@ -183,6 +187,48 @@ int main()
     return 0;
 }
 ```
+> *note* đoạn code dưới đây chúng ta không thể nhập được chuỗi thứ 3 vì kí tự cuối cùng của chuỗi thứ 2 là dấu **\n**. Ta chỉ cần thêm câu lệnh `scanf("\n");` như hình là xog.
+```C
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+    char a;
+    char str[200];
+    char str2[200];
+    
+    
+    scanf("%c",&a);
+    scanf("%s", str);
+ //   scanf("\n");
+    scanf("%[^\n]s",str2);
+    printf("%c\n",a);
+    printf("%s\n",str);
+    printf("%s\n",str2);
+      
+    return 0;
+    
+}
+```
+
+
+
+*Cách 3*
+
+```C
+#include <stdio.h>
+
+int main()
+{
+char src[50], dest[50];
+strcpy(src, “This is source”);
+strcpy(dest, “This is destination”);
+}
+```
+
 ### 4. Strings and Pointers in C
 
 - Trong mảng, tên biến trỏ tới địa chỉ phần đầu tiên trong mảng. Tương tự, trong chuỗi ta tạo ra con trỏ để trỏ tới địa chỉ phần tử đầu tiên trong chuỗi.
@@ -247,8 +293,8 @@ int main(){
 	printf("do dai cua chuoi la %d",length);
 }
 ```
-- Hàm strcat(): ghép chuỗi
-- Hàm strcpy(): copy n kí tự đầu tiên chuỗi này vào chuỗi khác
+- Hàm strcat() : ghép chuỗi
+- Hàm strcpy() : copy n kí tự đầu tiên chuỗi này vào chuỗi khác
 
 // C program to implement
 // the above approach
@@ -279,6 +325,9 @@ int main()
 - Hàm strcmp(): so sánh 2 chuỗi
 > cú pháp: strcmp(first_str, second_str );
 > Kết quả hàm này trả về 3 giá trị: dương ( first_str - second_str >0), âm ( first_str - second_str <0), 0 ( khi chúng trùng nhau)
+
+- Hàm strchr(): dùng để tìm kiếm vị trí đầu tiên của kí tự cần tìm. Nó trả về vị trí trong bộ nhớ của kí tự. Nếu không có sẽ trả về kí tự NULL( tương đương với 0) 
+- Hàm strstr(): tương tự với strchr() nhưng dùng để tìm kiếm chuỗi
 
 ## 6. Mảng
 
