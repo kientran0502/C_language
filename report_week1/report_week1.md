@@ -13,8 +13,13 @@
 
 #### int
 
-- Trong `int`, nếu 1 số nguyên, chữ thường hoặc chưx in bị đứng trước bởi `'0x'` thì nó nó được biểu diễn ở hệ thập lục phân.
+- Trong `int`, nếu có 1 số nguyên, chữ thường hoặc chữ in bị đứng trước bởi `'0x'` thì nó nó được biểu diễn ở hệ thập lục phân.
 > int rgbColor = 0xFFEF0D;
+
+#### char
+
+ - Nó lưu trữ một ký tự đơn và yêu cầu một byte bộ nhớ trong hầu hết các trình biên dịch.
+ > char a = 'c';
 
 #### float và double
 
@@ -44,7 +49,7 @@ Ngoài các kiểu cơ bản còn có các dạn bổ sung cho các kiểu đó:
 > enum dùng để thành lập kiểu dữ liệu mới
 > 
 > - *ví dụ:* 
-> enum primaryColor {red, yellow, blue}; *lúc này ta có kiểu dữ liệ mới tên là primaryColor (giúng như int, float,...) với các giá trị của nó chỉ có ở đây là red(0), yellow(1), blue(2)*
+> enum primaryColor {red, yellow, blue}; *lúc này ta có kiểu dữ liệu mới tên là primaryColor (giúng như int, float,...) với các giá trị của nó chỉ có ở đây là red(0), yellow(1), blue(2)*
 > - Khai báo kiểu dữ kiệu mới như bình thường:
 > primaryColor mycolor= red;
 
@@ -71,8 +76,6 @@ có 'u' hoặc 'U' nếu là dạng **unsigned**
 - 1.7e4 ứng với với 1.7x10 luỹ thừa 4
 - Khai báo long double theo sau phải cũng có 'l' hoặc 'L'. Ví dụ: 1.2345e+7L 
 
-> **Hằng số nếu không phải là int thì nó là double**
-
 #### Hằng kí tự
 
 Được viết trong dấu `''`
@@ -85,7 +88,7 @@ ví dụ:
 
 
 - Constants là loại dữ liệu có giá trị không đổi trong quá trình thực hiện chương trình.
-- Biến dùng để đặt tên cho memory location.
+- Biến dùng để đặt tên cho địa chỉ bộ nhớ.
 - Biến chứa  giá trị có thể thay đổi trong quá trình thực hiện chương trình.
 
 > - Biến cục bộ: nằm đầu phần thân của 1 hàm
@@ -96,8 +99,9 @@ ví dụ:
 
 - **const** để khai báo biến hằng( biến không thây đổi trong quá trình thực thi chương trình). Nếu kiểu hằng không được khai báo cụ thể thì mặc định nó là kiểu int (nếu khai báo 3.14 thì nó lưu 3)
 > const int max=100;
+> > **Hằng số nếu không phải là int thì nó là double**
 
-- **volatile** dùng để khai báo biến( thường là biến toàn cục) thông báo cho compiler biết biến này có khả năng thay đổi bởi các tác nhân mà ngoài phạm vi dự đoán của compiler( bị thay đổi bởi ngắt hoặc ứng dụng đa luồn) và phải luôn cập nhật giá trị của biến này khi mang đi sử dụng( tránh việc compiler tối ưu hóa chương trình mà đọc ẩu :))
+- **volatile** dùng để khai báo biến( thường là biến toàn cục) thông báo cho compiler biết biến này có khả năng thay đổi bởi các tác nhân mà ngoài phạm vi dự đoán của compiler( bị thay đổi bởi ngắt hoặc ứng dụng đa luồng) và phải luôn cập nhật giá trị của biến này khi mang đi sử dụng( tránh việc compiler tối ưu hóa chương trình mà đọc ẩu :))
 
 ## 3. String
 
@@ -111,7 +115,7 @@ ví dụ:
 
  > char str[] = "GeeksforGeeks";
 
- > - char str[50] = "GeeksforGeeks";
+ > char str[50] = "GeeksforGeeks";
 
  > char str[14] = { 'G','e','e','k','s','f','o','r','G','e','e','k','s','\0'};
 
@@ -162,7 +166,7 @@ int main()
 ```
 
 *Cách 2*: sử dụng scanset
-- Phần trong ngoặc vuôn sẽ được xử lí.
+- Phần trong ngoặc vuông sẽ được xử lí.
 >- Ví dụ: [A-Z] thì nó in ra chỉ các chữ hoa liên tiếp đầu tiên
 > - [^\n] thì nó in ra các kí tự cho điến khi xuất hiện dấu xuống dòng `\n`
 
@@ -220,12 +224,14 @@ int main()
 
 ```C
 #include <stdio.h>
-
+#include <string.h>
 int main()
 {
 char src[50], dest[50];
-strcpy(src, “This is source”);
-strcpy(dest, “This is destination”);
+strcpy(src, "This is source");
+strcpy(dest, "This is destination");
+printf("%s\n",src);
+printf("%s",dest);
 }
 ```
 
@@ -331,11 +337,36 @@ int main()
 
 ## 6. Mảng
 
+#### 1. Khai báo mảng
 - Khai báo mảng là khai báo tập hợp các giá trị có chung 1 kiểu dữ liệu
-- Nếu chúng ta sử dụng 1 biểu thức hoặc 1 biến cho giá tị nằm ngoài phạm vi của mảng thì gọi là mảng ngoài giới hạn
+- Nếu chúng ta sử dụng 1 biểu thức hoặc 1 biến cho giá trị nằm ngoài phạm vi của mảng thì gọi là mảng ngoài giới hạn
+- Cú pháp khai báo mảng: 
+```C 
+data_type array_name [size];
+         or
+data_type array_name [size1] [size2]...[sizeN];
+```
+
+#### 2. Khởi tạo mảng
+
+Cú pháp:
+
+- data_type array_name [size/no_size] = {value1, value2, ... valueN};
+
+- Sử dụng vòng lặp:
+```C
+for (int i = 0; i < N; i++) {
+    array_name[i] = valuei;
+}
+```
 
 >- int counter[5] = {0, 0, 0, 0, 0}; /*declares an array called counter to contain five integer values and initializes each of these elements to zero
 >- float sample_data[500]={100.0, 330.3, 500.5}; /*initializes the first three value of sample_data to 100.0, 330.3, 500.5, and sets the remaining 497 elements to zero
+>- Chúng ta có thể cập nhật phần tử đã có hoặc chưa có bằng cách:
+ for (int i = 0; i < N; i++) {
+    array_name[i] = valuei;
+}
+
 
 - Khởi tạo mảng 2 chiều:
 
@@ -372,3 +403,147 @@ int numbers[2][3][4] = {
        {2, 4, 5, 6}
    }
    ```
+#### Trả về giá trị của mảng từ 1 hàm
+```C
+// C Program to return array from a function
+#include <stdio.h>
+ 
+// function
+int* func()
+{
+    static int arr[6] = { 2,5,4,8,3,1};
+ 
+    return arr;
+}
+ 
+// driver code
+int main()
+{
+ 
+    int* ptr = func();
+ 
+    printf("Array Elements: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *ptr++);
+    }
+    return 0;
+}
+```
+#### Các thuộc tính của mảng
+
+- <u>Kích thước cố định</u>: kích thước của mảng là cố định và không thể bị thay đổi trong quá trình thực hiện chương trình
+- <u>Tất cả các phần tử phải cùng kiểu dữ liệu</u>
+- <u>Tất cả các phần tử trong 1 mảng được lưu trữ liên tiếp nhau</u>
+- <u>Truy cập ngẫu nhiên vào các phần tử</u>: Thuộc tính này là kết quả của Bộ lưu trữ liền kề khi trình biên dịch suy ra địa chỉ của phần tử tại chỉ mục đã cho bằng cách sử dụng địa chỉ của phần tử đầu tiên và số chỉ mục. **Ví dụ:**
+```C
+// C Program to check the random access property of the
+// array
+#include <stdio.h>
+ 
+int main()
+{
+ 
+    // creating an array of 5 elements
+    int arr[5] = { 1, 2, 3, 4, 5 };
+ 
+    // address of first element
+    int* ptr = &arr[0];
+ 
+    // printing arr[3]
+    printf("Array[3]: %d\n", arr[3]);
+ 
+    // printing element at index 3 using ptr
+    printf("Array[3] using pointer to first element = %d",
+           *(ptr + 3));
+ 
+    return 0;
+}
+```
+
+- <u>Mối liên hệ giữa mảng và con trỏ</u>: đọc phần con trỏ
+```C
+// C Program to Illustrate the Relationship Between Array
+// and Pointers
+#include <stdio.h>
+ 
+int main()
+{
+ 
+    // creating an array with 3 elements
+    int arr[3] = { 1, 2, 3 };
+ 
+    int* ptr = &arr[0];
+ 
+    // Pointer to first element
+    printf("Pointer to First Element: %p\n", ptr);
+ 
+    // Array name as pointer
+    printf("Arran Name: %p", arr);
+ 
+    return 0;
+}
+```
+
+- <u>Kiểm tra giới hạn</u>: khi truy cập vào phần tử nằm ngoài phạm vi giới hạn của mảng đã khai báo, compiler không có khả năng báo lỗi này vì thế dễ dẫn đến một số lỗi ngoài ý muốn.
+- <u>Phân rã mảng</u>:Phân rã mảng là quá trình trong đó một mảng trong C mất đi kích thước của nó trong một số điều kiện nhất định và phân rã thành các con trỏ. Sau này, chúng ta không thể xác định kích thước của mảng bằng toán tử sizeof(). Nó xảy ra khi một mảng được truyền dưới dạng con trỏ.
+```C
+// C Program to Demonstrate the Array Decay
+#include <stdio.h>
+ 
+// function
+void func(int* arr)
+{
+    printf("Sizeof Value in Function: %d", sizeof(arr));// giá trị được in ra là 8, kích thước phần tử đầu tiên của mảng
+}
+ 
+int main()
+{
+ 
+    // creating array with 3 elements
+    char arr[3];
+ 
+    printf("Sizeof Value in Main: %d\n", sizeof(arr));// giá trị được in ra là 3, kích thước thực của mảng
+ 
+    // passing array
+    func(arr);
+ 
+    return 0;
+}
+```
+
+
+
+##### Bài tập
+
+![Alt text](image-3.png)
+
+```C
+#include <stdio.h>
+int main()
+{
+	int n;
+	printf("nhap n = ");
+	scanf("%d",&n);
+	int matrix[n][n];
+	for(int i=0; i<n; i++){
+		for(int j=0; j<n; j++){
+			int a= i+j;
+		matrix[i][j]= a+1;
+		if((i+j)>=n){
+			matrix[i][j]= i+j-n+1;
+			}
+			}
+	}	
+//in ra man hinh
+	for(int i=0; i<n;i++){
+		for( int j=0; j<n;j++){
+			printf("%d ",matrix[i][j]);
+		}
+		printf("\n");
+	}
+	goto end;
+	
+end:   
+    return 0;
+}
+```

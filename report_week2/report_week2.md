@@ -214,4 +214,181 @@ int sum()
     return sum;
 }
 ```
+##### Sự khác nhau giữa hàm và đối số
 
+![Alt text](image-2.png)
+
+## 3. Con trỏ trong C
+
+- Con trỏ dùng để chứa địa chỉ bộ nhớ của biến, hàm, hoặc cả con trỏ khác.
+> Cú pháp:
+> datatype * ptr;
+
+```C
+int var = 10;
+int *ptr = &var; hoặc int * ptr;
+                      ptr = &var;
+
+
+// Giá trị trả về 
+Value at ptr = 0x7fff1038675c (địa chỉ nhớ của biến var)
+Value at var = 10 
+Value at *ptr = 10 
+```
+**:))Cơ mà, giá trị trả về của `var` và `*ptr` giống nhau thì việc sử dụng con trỏ như này có tác dụng gì nhỉ????????:))** (dùng nó để truy xuất các giá trị trả về của hàm không trả về giá trị)
+
+```C
+#include <stdio.h>
+#include <math.h>
+
+void update(int *a,int *b) {
+    int sum, sub;
+    sum= *a + *b;
+    sub= abs(*a - *b);
+    *a = sum;
+    *b = sub;
+}
+
+int main() {
+    int a, b;
+    int *pa = &a, *pb = &b;
+    
+    scanf("%d %d", &a, &b);
+    update(pa, pb);
+    printf("%d\n%d", a, b);
+
+    return 0;
+}
+```
+
+Lưu ý: Khuyến cáo rằng con trỏ phải luôn được khởi tạo ở một giá trị nào đó trước khi bắt đầu sử dụng nó. Nếu không, nó có thể dẫn đến một số lỗi.
+
+#### # Các loại con trỏ
+
+1. <u>Con trỏ đến số nguyên</u>: như ví dụ trên
+
+2. <u>Con trỏ đến mảng</u>
+
+```C
+  int arr[5] = { 1, 2, 3, 4, 5 };
+  int *ptr = arr; // con trỏ trỏ tới kí tự đầu tiên của mảng
+
+  int (*ptr)[10]; // con trỏ trỏ tới toàn bộ mảng
+  ```
+
+ Đọc thêm về con trỏ đến mảng 2 chiều: https://www.geeksforgeeks.org/pointer-array-array-pointer/ 
+
+3. <u>Con trỏ cấu trúc</u>
+
+4. <u>Con trỏ đến hàm</u>
+
+> cú pháp:
+> int (*ptr)(int, char);
+code mẫu:
+```C
+#include <stdio.h>
+// A normal function with an int parameter
+// and void return type
+void fun(int a)
+{
+    printf("Value of a is %d\n", a);
+}
+  
+int main()
+{
+    // fun_ptr is a pointer to function fun() 
+    void (*fun_ptr)(int) = &fun;
+  
+    /* The above line is equivalent of following two
+       void (*fun_ptr)(int);
+       fun_ptr = &fun; 
+    */
+  
+    // Invoking fun() using fun_ptr
+    (*fun_ptr)(10);
+  
+    return 0;
+}
+```
+- Tên của hàm cũng có thể được sử dụng để lấy địa chỉ của hàm. Ví dụ: trong chương trình bên dưới, chúng tôi đã xóa toán tử địa chỉ '&' trong bài tập. Chúng tôi cũng đã thay đổi cách gọi hàm bằng cách bỏ *, chương trình vẫn hoạt động.
+
+```C
+#include <stdio.h>
+// A normal function with an int parameter
+// and void return type
+void fun(int a)
+{
+    printf("Value of a is %d\n", a);
+}
+  
+int main()
+{ 
+    void (*fun_ptr)(int) = fun;  // & removed
+  
+    fun_ptr(10);  // * removed
+  
+    return 0;
+}
+```
+>Output:
+Giá trị của a là 10
+- Kết hợp sử dụng con trỏ với hàm: con trỏ hàm có thể được sử dụng thay cho trường hợp chuyển đổi. Ví dụ: trong chương trình bên dưới, người dùng được yêu cầu lựa chọn giữa 0 và 2 để thực hiện các tác vụ khác nhau.
+
+```C
+#include <stdio.h>
+void add(int a, int b)
+{
+    printf("Addition is %d\n", a+b);
+}
+void subtract(int a, int b)
+{
+    printf("Subtraction is %d\n", a-b);
+}
+void multiply(int a, int b)
+{
+    printf("Multiplication is %d\n", a*b);
+}
+  
+int main()
+{
+    // fun_ptr_arr is an array of function pointers
+    void (*fun_ptr_arr[])(int, int) = {add, subtract, multiply};
+    unsigned int ch, a = 15, b = 10;
+  
+    printf("Enter Choice: 0 for add, 1 for subtract and 2 "
+            "for multiply\n");
+    scanf("%d", &ch);
+  
+    if (ch > 2) return 0;
+  
+    (*fun_ptr_arr[ch])(a, b);
+  
+    return 0;
+}
+```
+#### Trả về giá trị của mảng từ 1 hàm
+```C
+// C Program to return array from a function
+#include <stdio.h>
+ 
+// function
+int* func()
+{
+    static int arr[6] = { 2,5,4,8,3,1};
+ 
+    return arr;
+}
+ 
+// driver code
+int main()
+{
+ 
+    int* ptr = func();
+ 
+    printf("Array Elements: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *ptr++);
+    }
+    return 0;
+}
+```
