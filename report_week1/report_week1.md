@@ -4,7 +4,7 @@
 
 ### Các kiểu dữ liệu cơ bản
 
-| **Kiểu**         | **Kích thước** |  
+| **Kiểu**         | **Kích thước** |
 | ---------------- | -------------- |
 | int (số nguyên)  | 16 bit         |
 | char             | 8 bit          |
@@ -61,7 +61,45 @@ Ngoài các kiểu cơ bản còn có các dạn bổ sung cho các kiểu đó:
 
 ![Alt text](image-1.png)
 
-- **Format Specifiers**
+- **Format Specifiers**: được sử dụng để thông báo cho trình biên dịch về loại dữ liệu sẽ được in hoặc quét trong các hoạt động đầu vào và đầu ra
+
+| Format Specifier                 | mô tả                          |
+| -------------------------------- | ------------------------------ |
+| %c                               | biểu diễn 1 kí tự              |
+| %d                               | biểu diễn số nguyên có dấu     |
+| %e or %E                         | biểu diễn số thực *10 mũ       |
+| %f                               | biểu diễn số thực              |
+| %i                               | biểu diễn Unsigned integer     |
+| %ld or %li                       | long                           |
+| %0                               | kiểu octal                     |
+| %x(chữ thường) or %X(chữ in hoa) | in chuỗi ra dạng thập lục phân |
+| %s                               | in chuỗi                       |
+| %p                               | in địa chỉ bộ nhớ              |
+
+- %i dùng để in ra số nguyên có khoảng trắng
+```C
+printf("Printed using %%i: %3i\n", x);
+```
+> Printed using %i:    45
+
+- %u là công cụ xác định định dạng cho kiểu dữ liệu số nguyên không dấu. Nếu chúng ta chỉ định một giá trị nguyên âm cho %u, nó sẽ chuyển đổi số nguyên đó thành phần bù đầu tiên của nó.
+> Entered unsigned integer: 25
+Printing -10 using %u: 4294967286
+
+- Chúng ta có thể sử dụng %p để in địa chỉ và con trỏ trong C
+printf("%p...", ...);
+```C
+#include <stdio.h>
+int main()
+{
+    int a = 10;
+    printf("The Memory Address of a: %p\n",(void*)&a);
+    return 0;
+}
+```
+
+
+
 ![Alt text](image-2.png)
 
 #### Hằng số nguyên 
@@ -278,7 +316,16 @@ int main()
 
 > fputs(str, stdout); in chuỗi nà không xuống dòng
 - Khác biệt:
-![Alt text](image.png)
+
+
+| printf()                                                                                      | puts                                                              |
+| --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| printf cho phép chúng ta in các chuỗi được định dạng bằng cách sử dụng bộ xác định định dạng. | không hỗ trợ định dạng.                                           |
+| printf không tự động thêm ký tự dòng mới.                                                     | tự động thêm một ký tự dòng mới.                                  |
+| Nó trả về số lượng ký tự được ghi thành công vào bảng điều khiển.                             | Nó trả về số lượng ký tự được ghi thành công vào bảng điều khiển. |
+| printf có thể xử lý nhiều chuỗi cùng một lúc, giúp nối các chuỗi ở đầu ra.                    | có thể in một chuỗi cùng một lúc.                                 |
+| printf có thể in dữ liệu thuộc nhiều loại dữ liệu khác nhau.                                  | chỉ có thể in chuỗi.                                              |
+
 
 #### Lưu trữ chuỗi
 
