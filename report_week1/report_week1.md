@@ -4,12 +4,12 @@
 
 ### Các kiểu dữ liệu cơ bản
 
-| **Kiểu**         | **Kích thước** |
-| ---------------- | -------------- |
-| int (số nguyên)  | 16 bit         |
-| char             | 8 bit          |
-| float (số thực)  | 32 bit         |
-| double (số thực) | 64 bit         |
+| **Kiểu**         | **Kích thước**     |
+| ---------------- | ------------------ |
+| int (số nguyên)  | 16 bit hoặc 32 bit |
+| char             | 8 bit              |
+| float (số thực)  | 32 bit             |
+| double (số thực) | 64 bit             |
 
 #### int
 

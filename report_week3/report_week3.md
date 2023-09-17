@@ -232,11 +232,12 @@ int main()
     return 0;
 }
 ```
-3. Từ khóa typedef cũng có thể được sử dụng với con trỏ để khai báo nhiều con trỏ trong một câu lệnh.
+3. Từ khóa typedef cũng có thể được sử dụng với con trỏ để khai báo nhiều con trỏ trong một câu lệnh. 
 ```C
 typedef int* Int_ptr;
 Int_ptr var, var1, var2;
 ```
+> Cái này thì chỉ xem cho biết thôi chứ không nên dùng vì nó thay đổi cấu trúc khai báo
 
 4. Nó có thể được sử dụng với mảng để khai báo bất kỳ số lượng biến nào.
 
@@ -268,6 +269,8 @@ struct name_1
 } var2;
 ```
 **Các cách để lồng Struct**
+
+.............để sau .............
 
 
 

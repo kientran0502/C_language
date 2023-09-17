@@ -218,6 +218,7 @@ int sum()
 
 ![Alt text](image-2.png)
 
+
 ## 3. Con trỏ trong C
 
 - Con trỏ dùng để chứa địa chỉ bộ nhớ của biến, hàm, hoặc cả con trỏ khác.
@@ -228,14 +229,20 @@ int sum()
 int var = 10;
 int *ptr = &var; hoặc int * ptr;
                       ptr = &var;
+```
 
-
+```C
 // Giá trị trả về 
 Value at ptr = 0x7fff1038675c (địa chỉ nhớ của biến var)
 Value at var = 10 
 Value at *ptr = 10 
 ```
+![Alt text](image-3.png)
+
+
+
 **:))Cơ mà, giá trị trả về của `var` và `*ptr` giống nhau thì việc sử dụng con trỏ như này có tác dụng gì nhỉ????????:))** (dùng nó để truy xuất các giá trị trả về của hàm không trả về giá trị)
+> Khi chúng ta tạo hàm void để hoán đổi 2 giá trị của 2 biến a và b thì khi ta gọi hàm trong chương trình chính giá trị của chúng ko thay đổi(chúng ta đã sử dụng truyền tham trị), thay vào đó ta sử dụng con trỏ để truyền vào hàm(truyền tham chiếu) thì sẽ cho ra kết quả ta cần
 
 ```C
 #include <stdio.h>
@@ -260,6 +267,69 @@ int main() {
     return 0;
 }
 ```
+
+```C
+#include <stdio.h>
+ 
+char str[]="Tran Hoang Kien";
+char *ptr= str;
+
+int main()
+{
+	
+	while(*ptr != '\0')
+	{
+		printf("%c",*ptr);
+		ptr++;
+	}
+ 
+    return 0;
+}
+```
+
+**Thêm 1 công dụng nữa của việc sử  dụng con trỏ**
+
+```C
+#include <stdio.h>
+ 
+int sum(int a, int b, int *c)
+{
+	*c= a-b;
+	return a+b;
+}
+
+int main()
+{
+	int d=2, e=3, hieu;
+	printf("sum = %d\n",sum(d,e,&hieu));
+	printf("hieu la %d",hieu);
+    return 0;
+}
+```
+
+**Có 1 đặc điểm nữa của con trỏ ở kq ví dụ sau**
+
+```C
+
+#include <stdio.h>
+ 
+
+
+int main()
+{
+	int i=100;
+	int *p=&i;
+	*p=110;
+	printf("%d\n",i);
+	(*p)++;
+	printf("%d\n",i);
+	
+ 
+    return 0;
+}
+```
+
+
 
 Lưu ý: Khuyến cáo rằng con trỏ phải luôn được khởi tạo ở một giá trị nào đó trước khi bắt đầu sử dụng nó. Nếu không, nó có thể dẫn đến một số lỗi.
 
