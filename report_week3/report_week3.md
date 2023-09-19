@@ -151,7 +151,9 @@ Note:
 ```C
 typedef existing_name alias_name;
 ```
+
 - Sau khi khai báo, chúng ta có thể sử dụng tên bí danh nếu như tên hiện có của nó đang nằm ngoài chương trình C.
+
 ```C
 
 // C program to implement typedef
@@ -175,6 +177,7 @@ int main()
 
 1. Dùng để đặt tên có ý nghĩa cho dữ liệu đã có, để người dùng khác có thể hiểu được.
 2. Nó có thể được sử dụng với các cấu trúc để tăng khả năng đọc mã và chúng ta không phải gõ struct nhiều lần.
+
 ```C
 // C program to implement
 // typedef with structures
@@ -202,6 +205,7 @@ int main()
     return 0;
 }
 ```
+
 ```C
 // C Program to illustrate the use of typedef with
 // structures
@@ -232,6 +236,7 @@ int main()
     return 0;
 }
 ```
+
 3. Từ khóa typedef cũng có thể được sử dụng với con trỏ để khai báo nhiều con trỏ trong một câu lệnh. 
 ```C
 typedef int* Int_ptr;
