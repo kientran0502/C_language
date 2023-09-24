@@ -218,6 +218,59 @@ int sum()
 
 ![Alt text](image-2.png)
 
+#### Truyền mảng vào hàm
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+// Note that arr[] for fun is just a pointer even if square
+// brackets are used
+void fun(int arr[])  // SAME AS void fun(int *arr)
+{
+   unsigned int n = sizeof(arr)/sizeof(arr[0]);
+   printf("\nArray size inside fun() is %d", n);
+}
+ 
+// Driver program
+int main()
+{
+   int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+   unsigned int n = sizeof(arr)/sizeof(arr[0]);
+   printf("Array size inside main() is %d", n);/// KQ là 8
+   fun(arr);/// KQ là 2
+   return 0;
+}
+```
+
+- Khi khái báo dùng mảng đã khởi tạo để đưa vào hàm, ta không thể đưa 1 lần tất cả các giá của mảng vào hàm hàm cùng lúc.
+- Vì thế, ta phải dùng biến con trỏ để truyền từng giá trị của mảng vào hàm.
+- Và đối với hàm để truyền mảng số nguyên thì ta phải truyên vào hàm số lượng phần tử của mảng, còn đối với chỗi thì khỏi cần cũng được.
+- Ví dụ:
+
+```C
+
+#include <stdio.h>
+ 
+void fun(int *arr, unsigned int n)
+{
+   int i;
+   for (i=0; i<n; i++)
+     printf("%d  ", arr[i]);
+}
+ 
+// Driver program
+int main()
+{
+   int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+   unsigned int n = sizeof(arr)/sizeof(arr[0]);
+   fun(arr, n);
+   return 0;
+}
+``` 
+
+> **Note**
+> Kích thước bộ nhớ cho con trỏ là khác nhau với từng loại máy khác nhau (máy 32 bit, 64 bit, hmm.. hình như là vậy :))
+
 
 ## 3. Con trỏ trong C
 

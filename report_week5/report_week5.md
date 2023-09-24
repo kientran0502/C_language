@@ -101,3 +101,115 @@ int main()
     controlled text
 #endif /* macroname */
 ```
+
+**Khối lệnh trong `#ifdef` được thực thi khi marconame được định nghĩa. Còn nếu không được định nghĩa thì khối lệnh sẽ bị bỏ qua**
+
+- Từ đó, ta có chỉ thị `#ifndef` trái ngược với `#ifdef`
+
+##### 2. ifndef
+
+- Khối câu lệnh giữa #ifndef và #endif sẽ chỉ được thực thi nếu macro hoặc mã định danh có #ifndef không được xác định.
+
+##### 3. #if, #else and #elif:
+
+- Nếu điều kiện có lệnh #if đánh giá thành giá trị khác 0 thì nhóm dòng ngay sau lệnh #if sẽ được thực thi nếu không điều kiện có lệnh #elif đánh giá thành giá trị khác 0 thì nhóm dòng ngay sau lệnh #elif sẽ được thực thi, nếu không các dòng sau lệnh #else sẽ được thực thi. 
+- Cú pháp:
+```C
+#if macro_condition
+   statements
+#elif macro_condition
+   statements
+#else
+   statements
+#endif
+```
+
+#### 4. Các chỉ thị khác:
+
+- #undef Directive: để hủy định nghĩa mamà ta đã định nghĩa trước đó.
+- #pragma Directive:
+> #pragma startup: Những lệnh này giúp chúng ta chỉ định các hàm cần chạy trước khi khởi động chương trình (trước khi điều khiển chuyển sang main()).
+> #pragma exit : Những lệnh này giúp chúng ta chỉ định các hàm cần chạy ngay trước khi thoát khỏi chương trình (ngay trước khi điều khiển quay về từ main()).
+
+
+## 2. Bài tập C
+
+![Alt text](image-1.png)
+
+```C
+# include <stdio.h>
+
+int main()
+{
+    int n;
+	printf("nhap so n = ");
+	scanf("%d",&n);
+	for(int i=1; i<=n; i++)
+	{
+	    for(int j=n; j>=i; j--)
+	    {
+	        printf(" ");
+	    }
+	    printf("*");
+	    if(i==1)
+	    {
+	        printf("\n");
+	        
+	    }else if(i==n)
+	    {
+	        for(int k=1; k<=(2*(i-1)-1); k++)
+    	    {
+    	        printf("*");
+    	    }
+    
+    	    printf("*\n");
+	    }
+	    else
+	    {
+    	    for(int k=1; k<=(2*(i-1)-1); k++)
+    	    {
+    	        printf(" ");
+    	    }
+    
+    	    printf("*\n");
+	    }
+	}
+	
+	return 0;
+}
+```
+![Alt text](image-2.png)
+
+```C
+# include <stdio.h>
+
+int main()
+{
+    int n;
+    printf("nhap so n ");
+    scanf("%d",&n);
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=1; j<n; j++)
+        {
+            if(i==1 || j==1 || i==n)
+            {
+                printf("*");
+            }
+            else if((j>(n/2)) && (i<=(n/2)))
+            {
+                printf(" ");
+            }else if((j<=(n/2)) && (i>(n/2)))
+            {
+                printf(" ");
+            }else
+            {
+                printf("*");
+            }
+        }
+        printf("*\n");
+    }
+	
+	return 0;
+}
+```
