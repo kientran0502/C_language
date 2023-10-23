@@ -1,29 +1,29 @@
 # include <stdio.h>
-//typedef void (*choose[])(int *, int *, int *, int *) = {no_hope, tong, tang, ket_thuc} ;
-void tong(int *a, int *b, int *c, int *d)
+
+void giam()
 {
-	printf("tong la %d", *a+*b+*c+*d);
+	printf("tong la ");
 }
 
-void tang(int *a, int *b, int *c, int *d)
+void tang()
 {
     int tang[4];
 	printf("tang dan");
 }
 
-void ket_thuc(int *a, int *b, int *c, int *d)
+void ket_thuc()
 {
 	printf("ket thuc");
 }
 
-void no_hope(int *a, int *b, int *c, int *d) 
+void no_hope() 
 {
     printf("khong co lua chon");
 }
 
 int main()
 {
-	void (*choose[])(int *, int *, int *, int *) = {no_hope, tong, tang, ket_thuc} ;
+	void (*choose[])(int *, int *, int *, int *) = {no_hope, giam, tang, ket_thuc} ;
 	int a[4];
 	int b=4;
 	int *n=&b;

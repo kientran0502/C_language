@@ -30,6 +30,10 @@
 - Marco là 1 mảnh chương trình được đặt tên.
 - Trong tiên xử lí thì các biến chưa được sinh ra vì vậy có dùng `#define` như một cách thay thế khai báo biến.
 - `#define` được dùng để định nghĩa 1 Marco.
+- `#define` có thể định nghĩa lại kiểu dữ liệu, định nghĩa số (ví dụ như PI 3.14,...), định nghĩa cách viết hàm.
+
+![Alt text](image-3.png)
+
 ```C
 
 // C Program to illustrate the macro
@@ -210,6 +214,97 @@ int main()
         printf("*\n");
     }
 	
+	return 0;
+}
+```
+
+**Code tham khảo:**(cho zui thôi, tà đạo)
+
+```C
+# include <stdio.h>
+
+void giam(int *a, int *b, int *c, int *d)
+{
+	printf("tong la %d", *a+*b+*c+*d);
+}
+
+void tang(int *a, int *b, int *c, int *d)
+{
+    int tang[4];
+	printf("tang dan");
+}
+
+void ket_thuc(int *a, int *b, int *c, int *d)
+{
+	printf("ket thuc");
+}
+
+void no_hope(int *a, int *b, int *c, int *d) 
+{
+    printf("khong co lua chon");
+}
+
+int main()
+{
+	void (*choose[])(int *, int *, int *, int *) = {no_hope, giam, tang, ket_thuc} ;
+	int a[4];
+	int b=4;
+	int *n=&b;
+	
+//void (*choose[])(int *no_hope, int *tong, int *tang, int *ket_thuc) ;
+
+	printf("nhap vao cac so :\n");
+	for(int i=0; i<4; i++)
+	{
+		printf("a[%d] = ",i);
+		scanf("%d",&a[i]);
+	}
+	
+	int number;
+	printf("sap xep tu lon toi nho nhan phim 1\n");
+	printf("sap xep tu nho toi lon nhan phim 2\n");
+	printf("ket thuc nhan phim 3\n");
+	scanf("%d", &number);
+	
+	(*choose[number])(&a[0], &a[1], &a[2], &a[3]);
+	
+	
+	return 0;
+}
+```
+![Alt text](image-4.png)
+```C
+#include<stdio.h>
+#include<string.h>
+void change(char *str1)
+{
+		char *ptr=str1;
+	
+	int a=0;
+	while(*ptr != NULL)
+	{
+		a++;
+		ptr++;
+	}
+	printf("\n%d\n",a);
+
+	
+	for(int i=a; i>=0; i--)
+	{
+		printf("%c",str1[i]);
+	}
+		
+}
+
+
+int main()
+{
+	char str1[20];
+	printf("nhap chuoi : ");
+	scanf("%[^\n]s", str1);
+	printf("%s",str1);
+	printf("\n%d",strlen(str1));
+	change(str1);
 	return 0;
 }
 ```

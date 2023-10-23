@@ -145,11 +145,12 @@ Note:
 
 #### #2. Typedef
 
-- Typedef là từ khóa được sử dụng để cung cấp tên mới cho các loại dữ liệu hiện có. Nó hoạt động như việc xác định bó danh cho câu lệnh.
+- Typedef là từ khóa được sử dụng để cung cấp tên mới cho các kiểu dữ liệu hiện có hoặc kiểu dữ liệu mình tự định nghĩa( ví dụ struct,...). Nó hoạt động như việc xác định bí danh cho câu lệnh.
+- Typedef được xử lí bởi compiler.
 - Cú pháp:
 
 ```C
-typedef existing_name alias_name;
+typedef long long ll;
 ```
 
 - Sau khi khai báo, chúng ta có thể sử dụng tên bí danh nếu như tên hiện có của nó đang nằm ngoài chương trình C.
@@ -248,7 +249,11 @@ Int_ptr var, var1, var2;
 
 **Typedef và #define**
 
-...................để sau............
+| Typedef  | #define  |
+|---|---|
+| được xử lí trong compiler  | được xử lí trong tiền xử lí   |
+|chỉ định ngĩa được kiểu dữ liệu | định ngĩa đươc rộng hơn cho cả kiểu dữ liệu, cách viết hàm có sẵn, PI,..|
+
 
 #### #3 Nested structure
 
